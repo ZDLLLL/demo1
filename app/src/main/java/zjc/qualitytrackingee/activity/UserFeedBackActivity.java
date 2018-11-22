@@ -37,13 +37,17 @@ public class UserFeedBackActivity extends AppCompatActivity {
     @BindView(R.id.user_feedback_rv)
     RecyclerView user_feedback_rv;
   @BindView(R.id.user_feedback_ll) LinearLayout user_feedback_ll;
-    public List<String> ImageList;//反馈图片
+    public List<String> ImageList1;//反馈图片
     private List<String> UsernameList;//用户名
     public List<String> ConameList;//商品名
     public List<String> MessageList;//反馈信息
     private List<String> ScoreList;//打分
     private List<String> TimeList;//时间
     private List<String> UserImageList;//用户头像
+    public List<String> ImageList2;//反馈图片
+    public List<String> ImageList3;//反馈图片
+    private List<String> StatusList;
+    private List<String> FidList;
 
 
     private UserFeedBackAdapter userFeedBackAdapter;
@@ -74,7 +78,8 @@ public class UserFeedBackActivity extends AppCompatActivity {
     public void updateInterface(){
         //实例化 RecyclerViewAdapter 并设置数据
         userFeedBackAdapter= new UserFeedBackAdapter(this,
-                UserImageList, UsernameList,ScoreList,TimeList,this);
+                UserImageList, UsernameList,ScoreList,TimeList,MessageList,ConameList,
+                ImageList1,ImageList2,ImageList3,StatusList,FidList,this);
         //将适配的内容放入 mRecyclerView
         user_feedback_rv.setAdapter(userFeedBackAdapter);
 
@@ -82,14 +87,18 @@ public class UserFeedBackActivity extends AppCompatActivity {
     }
 
     public void datas(){
-        ImageList = new ArrayList<String>();//头像（谁的头像）
-        UsernameList = new ArrayList<String>();     //姓名（谁的消息）
-        MessageList = new ArrayList<String>();  //职务（消息内容）
-        ScoreList=new ArrayList<>();//打分
-        ConameList=new ArrayList<>();
-        TimeList=new ArrayList<>();
-        UserImageList=new ArrayList<>();
-        final String url= Net.GetAllUserFeedBack+"?c_id="+ MyApplication.getC_id();
+        ImageList1 = new ArrayList<String>();//反馈图片
+        ImageList2 = new ArrayList<String>();//反馈图片
+        ImageList3=new ArrayList<>();
+        UsernameList = new ArrayList<String>();     //姓名
+        MessageList = new ArrayList<String>();  //反馈内容
+        ScoreList=new ArrayList<>();//分数
+        ConameList=new ArrayList<>();//商品名
+        TimeList=new ArrayList<>();//时间
+        StatusList=new ArrayList<>();//阅读状态
+        UserImageList=new ArrayList<>();//用户头像
+        FidList=new ArrayList<>();//反馈编号
+        final String url= Net.GetAllBadUserFeedBack+"?c_id="+ MyApplication.getC_id();
         VolleyRequest.RequestGet(getContext(),url, "getAllUserFeedBack",
                 new VolleyInterface(getContext(), VolleyInterface.mListener,VolleyInterface.mErrorListener) {
 
@@ -98,7 +107,7 @@ public class UserFeedBackActivity extends AppCompatActivity {
                         Log.d("zjc",url);
                         try {
                             JSONObject jsonObject=new JSONObject(result);
-                            JSONArray jsonArray=jsonObject.getJSONArray("getAllFeedbackBycoid");
+                            JSONArray jsonArray=jsonObject.getJSONArray("ChaFeedback");
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                 String u_name=jsonObject1.getString("u_name");
@@ -106,16 +115,23 @@ public class UserFeedBackActivity extends AppCompatActivity {
                                 String co_name=jsonObject1.getString("co_name");
                                 String time=jsonObject1.getString("f_time");
                                 String f_describe=jsonObject1.getString("f_describe");
-                                //String image=jsonObject1.getString("f_img");
-                                //String userimage=jsonObject1.getString("f_img");
-
-                                //ImageList.add(image.replaceAll("\\\\","") );
+                                String image1=jsonObject1.getString("f_img1");
+                                String image2=jsonObject1.getString("f_img2");
+                                String image3=jsonObject1.getString("f_img3");
+                                String userimage=jsonObject1.getString("u_img");
+                                String f_status=jsonObject1.getString("f_status");
+                                String f_id=jsonObject1.getString("f_id");
+                                FidList.add(f_id);
+                                ImageList1.add(image1.replaceAll("\\\\","") );
+                                ImageList2.add(image2.replaceAll("\\\\","") );
+                                ImageList3.add(image3.replaceAll("\\\\","") );
                                 UsernameList.add(u_name);
                                 MessageList.add(f_describe);
                                 ScoreList.add(f_score);
                                 TimeList.add(time);
                                 ConameList.add(co_name);
-                                UserImageList.add(String.valueOf(R.drawable.head0));
+                                UserImageList.add(userimage.replaceAll("\\\\","") );
+                                StatusList.add(f_status);
                             }
                             updateInterface();
                         } catch (JSONException e) {

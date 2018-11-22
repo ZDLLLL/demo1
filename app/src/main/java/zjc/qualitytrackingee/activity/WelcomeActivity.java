@@ -41,6 +41,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     }
                     else {
                         intent=new Intent(WelcomeActivity.this,MainActivity.class);
+                        intent.putExtra("c_id",id);
                     }
                 }
 

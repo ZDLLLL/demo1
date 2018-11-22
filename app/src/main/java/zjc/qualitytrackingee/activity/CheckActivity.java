@@ -66,15 +66,11 @@ public class CheckActivity extends AppCompatActivity  implements CheckRecyclerVi
             @Override
             public void onRefresh() {
                 datas();
-
                 check_srl.setRefreshing(false);
 
             }
         });
     }
-//   // public void init(){
-//        recycler = (RecyclerView)findViewById(R.id.check_rv);
-//    }
 
     public void updateInterface(){
         //实例化 RecyclerViewAdapter 并设置数据
@@ -117,11 +113,6 @@ public class CheckActivity extends AppCompatActivity  implements CheckRecyclerVi
                     @Override
                     public void onMySuccess(String result) {
                         Log.d("zjc",url);
-//                        EmployeeBean employeeBean= GsonImpl.get().toObject(result,EmployeeBean.class);
-//                        List<EmployeeBean.Employee> list=employeeBean.getEmployee();
-//                        for(int i=0;i<list.size();i++){
-//
-//                        }
                         try {
                             JSONObject jsonObject=new JSONObject(result);
                             JSONArray jsonArray=jsonObject.getJSONArray("Admin");

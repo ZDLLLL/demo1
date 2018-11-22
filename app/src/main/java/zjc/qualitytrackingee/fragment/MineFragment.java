@@ -125,7 +125,7 @@ public class MineFragment extends Fragment {
                     @Override
                     public void onMyError(VolleyError error) {
                         Log.e("TAG", error.getMessage(), error);
-                        Toast.makeText(getContext(),"╮(╯▽╰)╭连接不上了",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"╮(╯▽╰)╭连接不上了",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

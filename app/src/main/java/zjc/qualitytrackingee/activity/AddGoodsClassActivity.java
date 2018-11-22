@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,7 +69,12 @@ public class AddGoodsClassActivity extends AppCompatActivity implements  AllGood
         add_goodsclass_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadGoodsClass();
+                if(TextUtils.isEmpty(add_goodsclass_et.getText().toString())){
+                    Toast.makeText(AddGoodsClassActivity.this,"您没有输入要增加的商品类！！！",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    uploadGoodsClass();
+                }
             }
         });
     }
@@ -79,7 +85,7 @@ public class AddGoodsClassActivity extends AppCompatActivity implements  AllGood
     public void updateInterface(){
         //实例化 RecyclerViewAdapter 并设置数据
         rvAdapter = new AllGoodsClassRecyclerViewAdapter(this,
-                 dataName);
+                 dataName,dataid);
         //将适配的内容放入 mRecyclerView
         add_goodsclass_rv.setAdapter(rvAdapter);
         //控制Item增删的动画，需要通过ItemAnimator  DefaultItemAnimator -- 实现自定义动画
@@ -99,7 +105,8 @@ public class AddGoodsClassActivity extends AppCompatActivity implements  AllGood
     }
     public void datas(){
 
-        dataName = new ArrayList<String>();     //商品类名（谁的消息）
+        dataName = new ArrayList<String>();//商品类名（谁的消息）
+        dataid=new ArrayList<>();
         final String url= Net.GetAllGoodsClass+"?c_id="+ MyApplication.getC_id();
         VolleyRequest.RequestGet(getContext(),url, "getallGoodsclass",
                 new VolleyInterface(getContext(), VolleyInterface.mListener,VolleyInterface.mErrorListener) {

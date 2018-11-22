@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:id="@+id/mine_bg_rl"
-            android:background="@drawable/mine_bg"
+            android:background="@drawable/mmin"
             android:orientation="horizontal">
 
             <ImageView
@@ -196,8 +196,8 @@
             android:id="@+id/my_exit_ll"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:gravity="bottom"
-            android:layout_alignParentBottom= "true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/mine_aboutus_ll"
             android:background="@drawable/shape_rectangle">
 
             <TextView

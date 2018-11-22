@@ -19,6 +19,14 @@ public class GoodsClassBean implements Comparable<GoodsClassBean>{
         if (!firstLetter.matches("[A-Z]")) { // 如果不在A-Z中则默认为“#”
             firstLetter = "#";
         }
+    }  public GoodsClassBean(String co_class,String co_classid){
+        this.co_class=co_class;
+        this.co_classid=co_classid;
+        pinyin = Cn2Spell.getPinYin(co_class); // 根据姓名获取拼音
+        firstLetter = pinyin.substring(0, 1).toUpperCase(); // 获取拼音首字母并转成大写
+        if (!firstLetter.matches("[A-Z]")) { // 如果不在A-Z中则默认为“#”
+            firstLetter = "#";
+        }
     }
 
     public String getPinyin() {

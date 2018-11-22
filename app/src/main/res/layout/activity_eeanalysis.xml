@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/check_rl"
+        android:id="@+id/eeanalysis_back_rl"
         android:background="#00A7FF"
         android:orientation="horizontal" >
         <LinearLayout
@@ -25,17 +25,22 @@
         </LinearLayout>
 
         <TextView
-            android:text="产品追踪"
+            android:text="人员追踪"
             android:textColor="#ffffffff"
             android:textSize="16sp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
-    <TextView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:id="@+id/eeanalysis_tv"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/eeanalysis_back_rl"
+        android:id="@+id/eeanalysis_srl">
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/eeanalysis_rv">
+</android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

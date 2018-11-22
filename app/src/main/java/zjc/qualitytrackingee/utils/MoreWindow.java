@@ -17,20 +17,19 @@ import android.view.View.OnClickListener;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-import com.mob.wrappers.UMSSDKWrapper;
 import com.ms_square.etsyblur.BlurringView;
 
 import zjc.qualitytrackingee.R;
 import zjc.qualitytrackingee.activity.AddGoodsActivity;
 import zjc.qualitytrackingee.activity.AddGoodsClassActivity;
 import zjc.qualitytrackingee.activity.AddJobActivity;
+import zjc.qualitytrackingee.activity.AddNewGoodsActivity;
 import zjc.qualitytrackingee.activity.CheckActivity;
-import zjc.qualitytrackingee.activity.GoodsClassListActivity;
-import zjc.qualitytrackingee.activity.ShowGoodsActivity;
+import zjc.qualitytrackingee.activity.ReleasePushActivity;
+import zjc.qualitytrackingee.activity.ShowGoodsClassActivity;
 import zjc.qualitytrackingee.activity.StaffManagementActivity;
 import zjc.qualitytrackingee.activity.UserFeedBackActivity;
 
@@ -245,10 +244,13 @@ public class MoreWindow extends PopupWindow implements OnClickListener {
                 v.getContext().startActivity(new Intent(v.getContext(), UserFeedBackActivity.class));
                 break;
             case R.id.show_goods_rl:
-                v.getContext().startActivity(new Intent(v.getContext(), ShowGoodsActivity.class));
+                v.getContext().startActivity(new Intent(v.getContext(), ShowGoodsClassActivity.class));
                 break;
             case R.id.add_goods_rl:
-                v.getContext().startActivity(new Intent(v.getContext(), AddGoodsActivity.class));
+                v.getContext().startActivity(new Intent(v.getContext(), AddNewGoodsActivity.class));
+                break;
+            case R.id.releasepush_rl:
+                v.getContext().startActivity(new Intent(v.getContext(), ReleasePushActivity.class));
                 break;
         }
 

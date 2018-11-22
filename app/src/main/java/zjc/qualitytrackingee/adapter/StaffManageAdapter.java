@@ -47,9 +47,9 @@ public class StaffManageAdapter extends RecyclerView.Adapter{
     public StaffManageAdapter(Context context, List<String> imageList, List<String> nameList, List<String> jobList,StaffManagementActivity staffManagementActivity) {
         this.staffManagementActivity=staffManagementActivity;
         this.context = context;
-        ImageList = imageList;
-        NameList = nameList;
-        JobList = jobList;
+        this.ImageList = imageList;
+        this.NameList = nameList;
+        this.JobList = jobList;
     }
 
     @NonNull
@@ -67,6 +67,7 @@ public class StaffManageAdapter extends RecyclerView.Adapter{
                 .asBitmap()
                 .error(R.drawable.head1)
                 .into(staffManageViewHolder.staff_item_iv);
+        final String phone=staffManagementActivity.PhoneList.get(position);
         staffManageViewHolder.staff_job_tv.setText(JobList.get(position));
         staffManageViewHolder.staff_name_tv.setText(NameList.get(position));
         staffManageViewHolder.staff_item_ll.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,7 @@ public class StaffManageAdapter extends RecyclerView.Adapter{
                 intent.putExtra("cimage",ImageList.get(position));
                 intent.putExtra("cname",NameList.get(position));
                 intent.putExtra("cjob",JobList.get(position));
+                intent.putExtra("c_phone",phone);
                 staffManagementActivity.startActivity(intent);
             }
         });

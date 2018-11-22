@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,9 +37,7 @@ import static zjc.qualitytrackingee.MyApplication.getContext;
 
 public class AddJobActivity extends AppCompatActivity implements AllJobRecyclerViewAdapter.onSlidingViewClickListener{
     private List<String> dataJob;     //姓名
-    public static List<String> dataJobid=new ArrayList<String>();     //姓名
-
-
+    public static List<String> dataJobid=new ArrayList<String>();     //编号
     @BindView(R.id.add_job_back_ll)
     LinearLayout add_job_back_ll;
     @BindView(R.id.alljob_rv)
@@ -59,7 +58,11 @@ public class AddJobActivity extends AppCompatActivity implements AllJobRecyclerV
         add_job_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadJob();
+                if(TextUtils.isEmpty(add_job_et.getText().toString())){
+                    Toast.makeText(AddJobActivity.this,"您没有输入要增加的职务！！！",Toast.LENGTH_SHORT).show();
+                }else {
+                    uploadJob();
+                }
             }
         });
         show_alljob_bt.setOnClickListener(new View.OnClickListener() {

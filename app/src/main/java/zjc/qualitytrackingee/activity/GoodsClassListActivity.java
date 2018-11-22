@@ -32,7 +32,7 @@ import static zjc.qualitytrackingee.MyApplication.getContext;
 public class GoodsClassListActivity extends AppCompatActivity {
     private SideBar activity_goodsclasslist_sb;
     private ListView acvitivity_goodsclasslist_lv;
-    private ArrayList<GoodsClassBean> list=new ArrayList<>();
+   // private ArrayList<GoodsClassBean> list=new ArrayList<>();
     public  ArrayList<GoodsClassBean> list1=new ArrayList<>();
     private LinearLayout goodsclass_back_ll;
     public static String co_name;
@@ -48,15 +48,17 @@ public class GoodsClassListActivity extends AppCompatActivity {
       //  getSupportActionBar().hide();
         co_name=getIntent().getStringExtra("co_name");
         co_price=getIntent().getStringExtra("co_price");
-        initData();
         initView();
+        loadingList();
+        //initData();
+
     }
     private void initView() {
         activity_goodsclasslist_sb.setOnStrSelectCallBack(new SideBar.ISideBarSelectCallBack() {
             @Override
             public void onSelectStr(int index, String selectStr) {
-                for (int i = 0; i < list.size(); i++) {
-                    if (selectStr.equalsIgnoreCase(list.get(i).getFirstLetter())) {
+                for (int i = 0; i < list1.size(); i++) {
+                    if (selectStr.equalsIgnoreCase(list1.get(i).getFirstLetter())) {
                         acvitivity_goodsclasslist_lv.setSelection(i); // 选择到首字母出现的位置
                         return;
                     }
@@ -71,9 +73,9 @@ public class GoodsClassListActivity extends AppCompatActivity {
         });
     }
     private void initData() {
-        loadingList();
+       //loadingList();
         // 对list进行排序，需要让User实现Comparable接口重写compareTo方法
-        GoodsClassListSortAdapter adapter = new GoodsClassListSortAdapter(this, list,this);
+        GoodsClassListSortAdapter adapter = new GoodsClassListSortAdapter(this, list1,this);
         acvitivity_goodsclasslist_lv.setAdapter(adapter);
 
     }
@@ -85,8 +87,8 @@ public class GoodsClassListActivity extends AppCompatActivity {
 //        list.add(new GoodsClassBean("Java开发交流群"));
 //        list.add(new GoodsClassBean("Android开发交流群"));
 //        Collections.sort(list);
-
-
+        //list=new ArrayList<>();
+        list1=new ArrayList<>();
         String url= Net.GetAllGoodsClass+"?c_id="+ MyApplication.getC_id();
         VolleyRequest.RequestGet(getContext(),url, "getallGoodsclass",
                 new VolleyInterface(getContext(), VolleyInterface.mListener,VolleyInterface.mErrorListener) {
@@ -97,20 +99,22 @@ public class GoodsClassListActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=new JSONObject(result);
                             JSONArray jsonArray=jsonObject.getJSONArray("getAllCommodityClassByCid");
-                            GoodsClassBean goodsClassBean=new GoodsClassBean();
+                            GoodsClassBean goodsClassBean;
                             for(int i=0;i<jsonArray.length();i++){
                                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
+                                goodsClassBean=new GoodsClassBean();
                                 //String coclass=jsonObject1.getString("coc_name");
                                 String coname=jsonObject1.getString("coc_name");
                                 String coclass=jsonObject1.getString("coc_id");
                                 goodsClassBean.setCo_classid(coclass);
-                                goodsClassBean.setCo_class(coclass);
-                                list.add(new GoodsClassBean(coname));
-                                list1.add(goodsClassBean);
+                                goodsClassBean.setCo_class(coname);
+                                //list.add(new GoodsClassBean(coname));
+                                list1.add(new GoodsClassBean(coname,coclass));
 
                             }
-                            Collections.sort(list);
+                            //Collections.sort(list);
+                            Collections.sort(list1);
+                            initData();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

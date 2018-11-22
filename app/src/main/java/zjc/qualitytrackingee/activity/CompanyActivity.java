@@ -50,7 +50,7 @@ public class CompanyActivity extends AppCompatActivity {
         e_phone=getIntent().getStringExtra("e_phone");
         e_yzm=getIntent().getStringExtra("e_yzm");
         initView();
-        initData();
+        loadingList();
     }
     private void initView() {
         acvitivity_company_lv = (ListView) findViewById(R.id.acvitivity_company_lv);
@@ -75,7 +75,6 @@ public class CompanyActivity extends AppCompatActivity {
         });
     }
     private void initData() {
-        loadingList();
         // 对list进行排序，需要让User实现Comparable接口重写compareTo方法
         SortAdapter adapter = new SortAdapter(this, list,this);
         acvitivity_company_lv.setAdapter(adapter);
@@ -105,6 +104,7 @@ public class CompanyActivity extends AppCompatActivity {
 
                             }
                             Collections.sort(list);
+                            initData();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

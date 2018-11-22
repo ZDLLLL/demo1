@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
+import zjc.qualitytrackingee.EEactivity.EEScheduleActivity;
 import zjc.qualitytrackingee.MyApplication;
 import zjc.qualitytrackingee.R;
 import zjc.qualitytrackingee.activity.AboutUsActivity;
@@ -61,6 +62,8 @@ public class EEMineFragment extends Fragment {
     SwipeRefreshLayout eemine_sfl;
     @BindView(R.id.eemine_aboutus_ll)
     LinearLayout eemine_aboutus_ll;
+    @BindView(R.id.eemine_schedule_ll)
+    LinearLayout eemine_schedule_ll;
     public String image;
 
     public EEMineFragment() {
@@ -125,6 +128,13 @@ public class EEMineFragment extends Fragment {
                         Toast.makeText(getContext(),"╮(╯▽╰)╭连接不上了",Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    //我的排班
+    @OnClick(R.id.eemine_schedule_ll)
+    public void eemine_schedule_ll_Onclick(){
+        Intent intent=new Intent(getActivity(), EEScheduleActivity.class);
+        startActivity(intent);
     }
     //关于我们
     @OnClick(R.id.eemine_aboutus_ll)

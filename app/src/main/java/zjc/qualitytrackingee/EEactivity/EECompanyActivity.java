@@ -51,8 +51,9 @@ public class EECompanyActivity extends AppCompatActivity {
         e_passwordagain=getIntent().getStringExtra("ee_passwordagain");
         e_phone=getIntent().getStringExtra("ee_phone");
         e_yzm=getIntent().getStringExtra("ee_yzm");
+
         initView();
-        initData();
+        loadingList();
     }
     private void initView() {
         eeacvitivity_company_lv = (ListView) findViewById(R.id.acvitivity_eecompany_lv);
@@ -77,7 +78,6 @@ public class EECompanyActivity extends AppCompatActivity {
         });
     }
     private void initData() {
-        loadingList();
         // 对list进行排序，需要让User实现Comparable接口重写compareTo方法
         EESortAdapter adapter = new EESortAdapter(this, list,this);
         eeacvitivity_company_lv.setAdapter(adapter);
@@ -114,6 +114,7 @@ public class EECompanyActivity extends AppCompatActivity {
                             //Collections.sort(list2.get(1).getC_name());
                             Collections.sort(list2);
                             Collections.sort(list);
+                            initData();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

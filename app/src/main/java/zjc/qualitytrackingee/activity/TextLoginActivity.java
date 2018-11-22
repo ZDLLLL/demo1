@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.othershe.nicedialog.NiceDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ import zjc.qualitytrackingee.utils.VolleyRequest;
 import static zjc.qualitytrackingee.MyApplication.getContext;
 
 public class TextLoginActivity extends AppCompatActivity {
+    final NiceDialog progressDialog=NiceDialog.init();
     @BindView(R.id.text_login_yzm_bt)
     Button text_login_yzm_bt;
     @BindView(R.id.textlogin_user_et) EditText textlogin_user_et;
@@ -85,6 +87,8 @@ public class TextLoginActivity extends AppCompatActivity {
     @OnClick(R.id.textlogin_bt)
     public void textlogin_bt_Onclick(){
         boolean flag=false;
+        SMSSDK.submitVerificationCode("86",textlogin_user_et.getText().toString(),textlogin_yzm_et.getText().toString());
+
         if(TextUtils.isEmpty(textlogin_user_et.getText().toString())){
             flag=true;
         }
@@ -94,6 +98,11 @@ public class TextLoginActivity extends AppCompatActivity {
         if(flag){
             Toast.makeText(this,"请填写账号/验证码后再进行登陆",Toast.LENGTH_SHORT).show();
         }else {
+            progressDialog.setLayoutId(R.layout.loading_layout)
+                    .setWidth(100)
+                    .setHeight(100)
+                    .setDimAmount(0.5f)
+                    .setOutCancel(true).show(this.getSupportFragmentManager());
             loading();
 
         }
@@ -118,7 +127,7 @@ public class TextLoginActivity extends AppCompatActivity {
                                 MyApplication.setC_id(cid);
                                 MyApplication.setE_power(power);
                                 MyApplication.setE_phone(textlogin_user_et.getText().toString());
-                                editor.putString("c_id",textlogin_user_et.getText().toString());
+                                editor.putString("e_phone",textlogin_user_et.getText().toString());
                                 editor.putString("c_id",cid);
                                 editor.putString("e_power",power);
                                 editor.apply();
@@ -131,7 +140,7 @@ public class TextLoginActivity extends AppCompatActivity {
                                     MyApplication.setC_id(cid);
                                     MyApplication.setE_power(power);
                                     MyApplication.setE_phone(textlogin_user_et.getText().toString());
-                                    editor.putString("c_id",textlogin_user_et.getText().toString());
+                                    editor.putString("e_phone",textlogin_user_et.getText().toString());
                                     editor.putString("c_id",cid);
                                     editor.putString("e_power",power);
                                     editor.apply();
@@ -150,7 +159,8 @@ public class TextLoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onMyError(VolleyError error) {
-
+                        Log.e("TAG", error.getMessage(), error);
+                        Toast.makeText(getContext(),"╮(╯▽╰)╭连接不上了",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

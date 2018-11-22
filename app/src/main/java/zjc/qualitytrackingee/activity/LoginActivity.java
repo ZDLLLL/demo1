@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                     .setDimAmount(0.5f)
                     .setOutCancel(true).show(this.getSupportFragmentManager());
             loading();
-            progressDialog.dismiss();
+           // progressDialog.dismiss();
 
         }
     }
@@ -139,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String id=MyApplication.getC_id();
                                     Log.v("公司编号：",MyApplication.getC_id());
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("c_id",c_id);
                                     startActivity(intent);
                                     finish();
                                 }else{

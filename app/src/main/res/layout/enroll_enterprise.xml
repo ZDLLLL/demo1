@@ -4,26 +4,26 @@
     android:layout_height="match_parent"
     android:id="@+id/er_rl"
     >
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="center"
-    android:src="@drawable/enroll_bg"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/entroll_bg1"
+        android:scaleType="center" />
     <LinearLayout
         android:id="@+id/er_name_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginBottom="30dp"
-        android:layout_above="@+id/er_user_ll"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/name" />
 
         <EditText
@@ -38,16 +38,16 @@
         android:id="@+id/er_user_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/er_password_ll"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_below="@+id/er_name_ll"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/enroll_user" />
 
         <EditText
@@ -55,37 +55,52 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="4"
-            android:hint="你的手机号码"
+            android:hint="请输入你的手机号码"
             android:inputType="text" />
-        <EditText
-            android:id="@+id/er_yzm_et"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="5"
-            android:hint="验证码"
-            android:inputType="text" />
-        <Button
-            android:layout_width="95dp"
-            android:layout_height="40dp"
-            android:id="@+id/er_gainyzm_bt"
-            android:text="获取验证码"
-            />
-    </LinearLayout>
 
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp"
+    android:layout_below="@+id/er_user_ll"
+    android:id="@+id/er_yzm_ll">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/yzm" />
+    <EditText
+        android:id="@+id/er_yzm_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="5"
+        android:hint="验证码"
+        android:inputType="text" />
+    <Button
+        android:layout_width="95dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_yzm"
+        android:id="@+id/er_gainyzm_bt"
+        android:text="获取验证码"
+        />
+</LinearLayout>
     <LinearLayout
         android:id="@+id/er_password_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/er_passwordagain_ll"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@+id/er_yzm_ll"
+        android:layout_marginRight="60dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/enroll_password" />
 
         <EditText
@@ -99,17 +114,16 @@
         android:id="@+id/er_passwordagain_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_below="@+id/er_password_ll"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/enroll_password" />
 
         <EditText
@@ -125,13 +139,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/er_passwordagain_ll"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/enroll_company" />
 
         <RelativeLayout
@@ -142,20 +157,21 @@
                 android:id="@+id/er_company_et"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="true"
                 android:layout_alignParentTop="true"
                 android:hint="请输入你的公司" />
 
-            <ImageButton
-                android:id="@+id/search_ib"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/search_circle" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/search_ib"-->
+                <!--android:layout_width="25dp"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@drawable/search_circle" />-->
 
         </RelativeLayout>
 
@@ -178,15 +194,16 @@
         android:layout_height="40dp"
         android:layout_below="@id/er_company_ll"
         android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="120dp"
         android:gravity="center"
 
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/er_bt"
-            android:layout_width="120dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
+            android:background="@drawable/shape"
             android:text="注册"
             android:textSize="25dp" />
     </LinearLayout>

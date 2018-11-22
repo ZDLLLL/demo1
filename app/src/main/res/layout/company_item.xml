@@ -28,6 +28,7 @@
             android:layout_height="60dp"
             android:gravity="center_vertical"
             android:textColor="#FF3030"
+            android:text="饿了么"
             android:textSize="16sp"
             android:padding="10dp"/>
     </LinearLayout>

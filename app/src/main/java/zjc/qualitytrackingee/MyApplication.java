@@ -122,6 +122,7 @@ public class MyApplication extends Application {
         for (String key:keySet){
             destoryMap.get(key).finish();
         }
+        destoryMap.remove(activityName);
     }
 
 }

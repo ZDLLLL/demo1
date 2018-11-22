@@ -26,11 +26,8 @@ import zjc.qualitytrackingee.utils.MoreWindow;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private HomeFragment homeFragment;
     private MineFragment mineFragment;
-
-
     LinearLayout idContainer;
     MoreWindow mMoreWindow;
-//
     @BindView(R.id.tab_home_ib)ImageButton tab_home_ib;
     @BindView(R.id.tab_mine_ib)ImageButton tab_mine_ib;
 
@@ -45,9 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MyApplication.addDestoryActivity(MainActivity.this,"MainActivity");
-//        getSupportActionBar().hide();
         ButterKnife.bind(this);
-       // String statuCar="0";
         JPushInterface.setAlias(this,1, MyApplication.getE_phone());
         inListener();
         setSelect(0);
@@ -62,13 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idContainer=findViewById(R.id.id_container);
         mMoreWindow = new MoreWindow(this);
         mMoreWindow.init(idContainer);
-//        findViewById(R.id.lin_tab_menu).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showMoreWindow();
-//            }
-//        });
-
     }
     public void inListener(){
 

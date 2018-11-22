@@ -83,12 +83,12 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
 
     public class SelectedPicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView fragment_add_image_iv;
+        private ImageView iv_img;
         private int clickPosition;
 
         public SelectedPicViewHolder(View itemView) {
             super(itemView);
-            fragment_add_image_iv = (ImageView) itemView.findViewById(R.id.fragment_add_image_iv);
+            iv_img = (ImageView) itemView.findViewById(R.id.fragment_add_image_iv);
         }
 
         public void bind(int position) {
@@ -97,10 +97,10 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
             //根据条目位置设置图片
             ImageItem item = mData.get(position);
             if (isAdded && position == getItemCount() - 1) {
-                fragment_add_image_iv.setImageResource(R.drawable.selector_image_add);
+                iv_img.setImageResource(R.drawable.selector_image_add);
                 clickPosition = AddGoodsActivity.IMAGE_ITEM_ADD;
             } else {
-                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, fragment_add_image_iv, 0, 0);
+                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
                 clickPosition = position;
             }
         }

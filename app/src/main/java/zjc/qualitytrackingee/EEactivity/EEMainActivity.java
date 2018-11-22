@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 import zjc.qualitytrackingee.EEfragment.EEHomeFragment;
 import zjc.qualitytrackingee.EEfragment.EEMineFragment;
 import zjc.qualitytrackingee.MyApplication;
@@ -41,7 +42,9 @@ public class EEMainActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_eemain);
      //   getSupportActionBar().hide();
         ButterKnife.bind(this);
+        JPushInterface.setAlias(this,1, MyApplication.getE_phone());
         inListener();
+        setSelect(0);
         MyApplication.addDestoryActivity(EEMainActivity.this,"EEMainActivity");
     }
     public void inListener(){

@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:id="@+id/eemine_bg_rl"
-            android:background="@drawable/mine_bg"
+            android:background="@drawable/mmin"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/ee_picture_url_iv"
@@ -184,19 +184,44 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/eemine_schedule_ll"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFFFFF"
+            android:layout_below="@+id/eemine_clean_ll"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/paiban" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="我的排班"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/ee_exit_ll"
             android:layout_width="match_parent"
+            android:layout_below="@+id/eemine_schedule_ll"
             android:layout_height="45dp"
-            android:gravity="bottom"
-            android:layout_alignParentBottom= "true"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape_rectangle">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:text="退出登陆"
                 android:textColor="#ff4081"

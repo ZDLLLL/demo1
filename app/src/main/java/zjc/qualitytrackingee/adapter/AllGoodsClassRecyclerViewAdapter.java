@@ -35,7 +35,7 @@ public class AllGoodsClassRecyclerViewAdapter extends RecyclerView.Adapter<AllGo
     public String e_phone;
     private String coc_id;
     private List<String> dataName;     //姓名
-
+    private List<String> dataid;
 
     private onSlidingViewClickListener onSvcl;
 
@@ -46,9 +46,10 @@ public class AllGoodsClassRecyclerViewAdapter extends RecyclerView.Adapter<AllGo
     }
 
     public AllGoodsClassRecyclerViewAdapter(Context context,
-                                            List<String> dataName) {
+                                            List<String> dataName,List<String> dataid) {
         this.context = context;
         this.dataName = dataName;
+        this.dataid=dataid;
     }
 
     @Override
@@ -62,6 +63,7 @@ public class AllGoodsClassRecyclerViewAdapter extends RecyclerView.Adapter<AllGo
         //holder.check_image_iv.setImageBitmap(dataImage.get(position));
 
         holder.goodsclass_name_tv.setText(dataName.get(position));
+        holder.goodsclass_id_tv.setText(dataid.get(position));
 
         holder.allgoodsclass_ll.getLayoutParams().width = RecyclerUtils.getScreenWidth(context);
 
@@ -120,7 +122,7 @@ public class AllGoodsClassRecyclerViewAdapter extends RecyclerView.Adapter<AllGo
     class SimpleHolder extends  RecyclerView.ViewHolder {
 
         public TextView goodsclass_name_tv;
-
+        public TextView goodsclass_id_tv;
         public TextView delete_goodsclass_tv;
         public LinearLayout allgoodsclass_ll;
         public SimpleHolder(AllGoodsClassRecyclerItemView view) {
@@ -128,6 +130,7 @@ public class AllGoodsClassRecyclerViewAdapter extends RecyclerView.Adapter<AllGo
             goodsclass_name_tv = (TextView) view.findViewById(R.id.goodsclass_name_tv);
             delete_goodsclass_tv = (TextView) view.findViewById(R.id.delete_goodsclass_tv);
             allgoodsclass_ll = (LinearLayout) view.findViewById(R.id.allgoodsclass_ll);
+            goodsclass_id_tv = (TextView) view.findViewById(R.id.goodsclass_id_tv);
 
             view.setSlidingButtonListener(AllGoodsClassRecyclerViewAdapter.this);
         }

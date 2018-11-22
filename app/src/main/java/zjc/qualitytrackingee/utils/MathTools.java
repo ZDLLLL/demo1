@@ -1,7 +1,11 @@
 package zjc.qualitytrackingee.utils;
 
+import android.util.Log;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import static com.android.volley.VolleyLog.TAG;
 
 /**
  * Created by edmond on 17-1-25.
@@ -21,6 +25,17 @@ public class MathTools {
             return 0;
         }
     }
+    public static String convertMD5(String inStr) {
+        Log.e(TAG, "convertMD5: -------------------------");
+        char[] a = inStr.toCharArray();
+        for (int i = 0; i < a.length; i++) {
+            a[i] = (char) (a[i] ^ 't');
+        }
+        String s = new String(a);
+        return s;
+
+    }
+
 
     public static String getMd5(String plainText) {
         try {

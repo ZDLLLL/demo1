@@ -1,15 +1,19 @@
 package zjc.qualitytrackingee.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -214,6 +218,7 @@ public class EnrollActivity extends AppCompatActivity {
         ee_gainyzm_bt=enroll_employee.findViewById(R.id.ee_gainyzm_bt);
         ee_company_et = enroll_employee.findViewById(R.id.ee_company_et);
         ee_yzm_et=enroll_employee.findViewById(R.id.ee_yzm_et);
+        showSoftInputFromWindow(this,ee_company_et);
         ee_gainyzm_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -273,6 +278,13 @@ if((getIntent().getIntExtra("eecode",0))==1) {
 }
 
     }
+    public static void showSoftInputFromWindow(Activity activity, EditText editText) {
+        editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
+        editText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editText, 0);
+    }
 
     public void initenterprise() {
         er_bt = enroll_enterprise.findViewById(R.id.er_bt);
@@ -284,6 +296,7 @@ if((getIntent().getIntExtra("eecode",0))==1) {
         er_rl = enroll_enterprise.findViewById(R.id.er_rl);
         er_yzm_et=enroll_enterprise.findViewById(R.id.er_yzm_et);
         er_gainyzm_bt = enroll_enterprise.findViewById(R.id.er_gainyzm_bt);
+        showSoftInputFromWindow(this,er_company_et);
         er_gainyzm_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

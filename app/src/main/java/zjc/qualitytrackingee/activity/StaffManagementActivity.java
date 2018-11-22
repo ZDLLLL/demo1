@@ -42,7 +42,7 @@ public class StaffManagementActivity extends AppCompatActivity {
     private List<String> ImageList;
     private List<String> NameList;
     private List<String> JobList;
-    public List<String> PhoneList;
+    public  static List<String> PhoneList;
 //    private List<String> NameList;
 //    private List<String> JobList;
     private StaffManageAdapter staffManageAdapter;
@@ -85,17 +85,14 @@ public class StaffManagementActivity extends AppCompatActivity {
         ImageList = new ArrayList<String>();//头像（谁的头像）
         NameList = new ArrayList<String>();     //姓名（谁的消息）
         JobList = new ArrayList<String>();  //职务（消息内容）
+        PhoneList=new ArrayList<>();
         final String url= Net.GetEmployee+"?e_phone="+ MyApplication.getE_phone();
         VolleyRequest.RequestGet(getContext(),url, "getEmployee",
                 new VolleyInterface(getContext(), VolleyInterface.mListener,VolleyInterface.mErrorListener) {
 
                     @Override
                     public void onMySuccess(String result) {
-//                        EmployeeBean employeeBean= GsonImpl.get().toObject(result,EmployeeBean.class);
-//                        List<EmployeeBean.Employee> list=employeeBean.getEmployee();
-//                        for(int i=0;i<list.size();i++){
-//
-//                        }
+
                         Log.d("zjc",url);
                         try {
                             JSONObject jsonObject=new JSONObject(result);
@@ -106,7 +103,7 @@ public class StaffManagementActivity extends AppCompatActivity {
                                 ImageList.add(image.replaceAll("\\\\","") );
                                 NameList.add(jsonObject1.getString("e_name"));
                                 JobList.add(jsonObject1.getString("e_job"));
-
+                                PhoneList.add(jsonObject1.getString("e_phone"));
                             }
                             updateInterface();
                         } catch (JSONException e) {
